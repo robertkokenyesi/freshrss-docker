@@ -1,0 +1,23 @@
+services:
+  freshrss:
+    image: lscr.io/linuxserver/freshrss:latest
+    container_name: freshrss
+    restart: unless-stopped
+    ports:
+      - '83:80'
+#    expose:
+#      - 443
+    environment:
+#      VIRTUAL_HOST: freshrss.rcomputing.co.uk
+#      LETSENCRYPT_HOST: freshrss.rcomputing.co.uk
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+
+    volumes:
+        - ./:/config
+
+networks:
+    default:
+      external: "true"
+      name: rcomputing
